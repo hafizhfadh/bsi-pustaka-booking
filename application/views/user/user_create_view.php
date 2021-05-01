@@ -47,7 +47,7 @@
                             <input type="password" id="inputConfirmPassword" class="form-control"
                                 placeholder="Confirm password" name="password_confirm" required>
                         </div>
-
+                        
                         <hr class="my-4">
     
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>

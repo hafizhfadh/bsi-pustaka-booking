@@ -9,10 +9,10 @@ class Register extends CI_Controller
     
     public function index()
     {
-		if (empty($this->session->userdata('is_login'))) {
-			$this->load->view('auth/register_view');
-		} else {
+		if ($this->session->userdata('is_login')) {
 			redirect('home');
+		} else {
+			$this->load->view('auth/register_view');
 		}
     }
 
@@ -29,7 +29,7 @@ class Register extends CI_Controller
             $email = $this->input->post('email');
 			$password = $this->input->post('password');
 			$this->AuthModel->register($name,$email,$username,$password);
-			$this->session->set_flashdata('success_register','Proses Pendaftaran User Berhasil');
+			$this->session->set_flashdata('success','Proses Pendaftaran User Berhasil');
 			redirect('auth/login');
 		}
 		else

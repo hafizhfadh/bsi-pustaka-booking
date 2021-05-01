@@ -36,7 +36,7 @@
                     <?php
                 }
                 ?>
-                    <form class="form-signin" method="POST" action="<?= base_url('product/product_create') ?>">
+                    <form class="form-signin" method="POST" action="<?= site_url('product/product_create') ?>">
                         <div class="form-label-group">
                             <label for="inputEmail">Product Name</label>
                             <input type="text" id="inputEmail" class="form-control" placeholder="Product Name" name="name"

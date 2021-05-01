@@ -41,13 +41,14 @@ class UserModel extends CI_Model
     function update_user($id, $name,$email,$username,$password)
 	{
 		$data = [
+            'id' => $id,
             'name' => $name,
             'email' => $email,
             'username' => $username,
             'password' => password_hash($password, PASSWORD_DEFAULT)
         ];
         $this->db->where('id', $id);
-        $this->db->update($this->table, $data);
+        $update = $this->db->update($this->table, $data);
     }
 
     function delete_user($id)

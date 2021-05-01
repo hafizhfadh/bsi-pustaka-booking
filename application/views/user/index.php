@@ -40,12 +40,12 @@
 											<a href="<?= site_url('user/edit_view/').$value->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
 											<?php if($this->session->userdata('is_admin') == 1) { ?>
 												<a href="<?= site_url('user/user_delete/').$value->id ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
-											<? } ?>
-										<? } ?>
+											<?php } ?>
+										<?php } ?>
 										</div>
 									</td>
 								</tr>
-								<? } ?>
+								<?php } ?>
 							</tbody>
 						</table>
 					</div>

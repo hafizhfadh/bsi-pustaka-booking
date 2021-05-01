@@ -3,7 +3,7 @@
 
 	<!-- Page Heading -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">Edit Product</h1>
+		<h1 class="h3 mb-0 text-gray-800">Form Product</h1>
 	</div>
 
 	<!-- Content Row -->
@@ -13,7 +13,7 @@
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<div class="d-flex justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary">Product Create Form</h6>
+						<h6 class="m-0 font-weight-bold text-primary">Product Form</h6>
 					</div>
 				</div>
 				<div class="card-body">
@@ -36,7 +36,7 @@
                     <?php
                 }
                 ?>
-                    <form class="form-signin" method="POST" action="<?= base_url('productcategory/category_create') ?>">
+                    <form class="form-signin" method="POST" action="<?= $product ? base_url('productcategory/category_edit/'.$product->id) : base_url('productcategory/category_create') ?>">
                         <div class="form-label-group">
                             <label for="inputEmail">Product Name</label>
                             <input type="text" id="inputEmail" class="form-control" placeholder="Product Name" name="name"

@@ -44,7 +44,7 @@ class User extends CI_Controller
             $email = $this->input->post('email');
 			$password = $this->input->post('password');
 			$this->UserModel->create_user($name,$email,$username,$password);
-			$this->session->set_flashdata('success_register','Proses Pendaftaran User Berhasil');
+			$this->session->set_flashdata('success','Proses Pendaftaran User Berhasil');
 			redirect('user/index');
 		}
 		else
@@ -54,28 +54,27 @@ class User extends CI_Controller
 		}
     }
 
-    public function user_edit()
+    public function user_edit($id)
     {
-        $this->form_validation->set_rules('username', 'username','trim|required|min_length[1]|max_length[255]|is_unique[users.username]');
-        $this->form_validation->set_rules('email', 'email','trim|required|min_length[1]|max_length[255]|is_unique[users.email]');
+        $this->form_validation->set_rules('username', 'username','trim|required|min_length[1]|max_length[255]');
+        $this->form_validation->set_rules('email', 'email','trim|required|min_length[1]|max_length[255]');
 		$this->form_validation->set_rules('password', 'password','trim|required|min_length[1]|max_length[255]');
 		$this->form_validation->set_rules('name', 'name','trim|required|min_length[1]|max_length[255]');
 		if ($this->form_validation->run())
 	   	{
-            $id = $this->input->post('id');
             $name = $this->input->post('name');
             $username = $this->input->post('username');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
 
 			$this->UserModel->update_user($id,$name,$email,$username,$password);
-			$this->session->set_flashdata('success_register','Proses Pendaftaran User Berhasil');
+			$this->session->set_flashdata('success','Proses Pendaftaran User Berhasil');
 			redirect('user/index');
 		}
 		else
 		{
 			$this->session->set_flashdata('error', validation_errors());
-			redirect('user/create_view');
+			redirect('user/edit_view/'.$id);
 		}
     }
 

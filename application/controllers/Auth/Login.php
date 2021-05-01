@@ -9,10 +9,10 @@ class Login extends CI_Controller
     
     public function index()
     {
-		if (empty($this->session->userdata('is_login'))) {
-			$this->load->view('auth/login_view');
-		} else {
+		if ($this->session->userdata('is_login')) {
 			redirect('home');
+		} else {
+			$this->load->view('auth/login_view');
 		}
     }
 

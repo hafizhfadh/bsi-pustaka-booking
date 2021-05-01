@@ -71,7 +71,7 @@
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 								Jumlah Barang Dipinjam</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_borrowed ?></div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-boxes fa-2x text-gray-300"></i>
@@ -96,7 +96,72 @@
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-				
+					<?php 
+					if(validation_errors())
+					{
+						?>
+						<div class="alert alert-danger" role="alert">
+							<?php echo validation_errors(); ?>
+						</div>
+						<?php
+					}
+					?>
+					<?php
+					if ($this->session->flashdata("success")) {
+						?>
+						<div class="alert alert-success" role="alert">
+							<?php echo $this->session->flashdata("success"); ?>
+						</div>
+						<?php
+					}
+					?>
+					<?php
+					if ($this->session->flashdata("error")) {
+						?>
+						<div class="alert alert-danger" role="alert">
+							<?php echo $this->session->flashdata("error"); ?>
+						</div>
+						<?php
+					}
+					?>
+					<form class="form-signin" method="POST" action="<?= site_url('home/borrowed_item_create') ?>">
+						<?php if ($this->session->userdata('is_admin') == 1) { ?>
+							<div class="form-label-group">
+								<label for="listCategory">Borrower's Name</label>
+								<select class="custom-select" id="listCategory" name="user_id" required>
+									<?php foreach ($list_user as $value) { ?>
+										<option value="<?= $value->id ?>"><?= $value->name ?></option>
+									<?php } ?>
+								</select>
+							</div>
+						<?php } else { ?>
+							<fieldset disabled>
+								<div class="form-label-group">
+									<label for="inputEmail">Borrower's Name</label>
+									<input type="text" class="form-control" placeholder="Borrower's Name" value="<?= $this->session->userdata('name'); ?>" required>
+									<input type="hidden" name="user_id" value="<?= $this->session->userdata('name'); ?>">
+								</div>
+							</fieldset>
+						<?php } ?>
+						<div class="form-label-group">
+							<label for="listCategory">Borrowed Goods</label>
+							<select class="custom-select" id="listCategory" name="product_id" required>
+								<?php foreach ($list_product as $value) { ?>
+									<option value="<?= $value->id ?>"><?= $value->name ?></option>
+								<?php } ?>
+							</select>
+						</div>
+
+						<div class="form-label-group">
+                            <label>Description</label>
+                            <textarea class="form-control"
+                                name="description" required></textarea>
+						</div>
+
+						<hr class="my-4">
+
+						<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Submit</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -115,10 +180,10 @@
 				</div>
 				<div class="card-body">
 					<p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-							CSS bloat and poor page performance. Custom CSS classes are used to create
-							custom components and custom utility classes.</p>
+						CSS bloat and poor page performance. Custom CSS classes are used to create
+						custom components and custom utility classes.</p>
 					<p class="mb-0">Before working with this theme, you should become familiar with the
-							Bootstrap framework, especially the utility classes.</p>
+						Bootstrap framework, especially the utility classes.</p>
 				</div>
 			</div>
 		</div>

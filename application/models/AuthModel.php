@@ -24,6 +24,7 @@ class AuthModel extends CI_Model
         if($query->num_rows() > 0) // Ngecek jumlah data yang kita terima dari database
         {
             $data_user = $query->row(); // ngambil data paling atas
+            
             if (password_verify($password, $data_user->password)) { // verifikasi password yang ada dari database
                 $this->session->set_userdata('user_id',$data_user->id);
                 $this->session->set_userdata('username',$username);
@@ -33,22 +34,25 @@ class AuthModel extends CI_Model
 				$this->session->set_userdata('is_login',TRUE);
                 return TRUE;
             } else {
-                return FALSE;
+                return FALSE; // Ternyata passwordnya ngga sesuai
             }
         }
         else
         {
-            return FALSE;
+            return FALSE; // Ternyata usernamenya ngga sesuai
         }
 	}
 	
     function cek_login()
     {
-        if(empty($this->session->userdata('is_login')))
+        if(!$this->session->userdata('is_login'))
         {
+            $this->session->unset_userdata('user_id');
             $this->session->unset_userdata('username');
-		    $this->session->unset_userdata('nama');
-		    $this->session->unset_userdata('is_login');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('email');
+            $this->session->unset_userdata('is_admin');
+            $this->session->set_userdata('is_login',FALSE);
 			redirect('auth/login');
         }
     }

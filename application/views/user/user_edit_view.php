@@ -16,8 +16,27 @@
 						<h6 class="m-0 font-weight-bold text-primary">User Edit Form</h6>
 					</div>
 				</div>
+                <?php 
+                if(validation_errors())
+                {
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo validation_errors(); ?>
+                    </div>
+                    <?php
+                }
+                ?>
+                <?php
+                if ($this->session->flashdata("error")) {
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $this->session->flashdata("error"); ?>
+                    </div>
+                    <?php
+                }
+                ?>
 				<div class="card-body">
-                    <form class="form-signin" method="POST" action="<?= base_url('user/user_edit') ?>">
+                    <form class="form-signin" method="POST" action="<?= site_url('user/user_edit/'.$user->id) ?>">
                         <div class="form-label-group">
                             <label for="inputUserame">Full Name</label>
                             <input type="text" id="inputUserame" class="form-control" placeholder="Full Name" name="name" value="<?= $user->name ?>"

@@ -35,7 +35,36 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
 							</div>
-							<form class="user" method="POST" action="<?= base_url('auth/register/proccess') ?>">
+								<?php 
+                                if(validation_errors())
+                                {
+                                    ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?php echo validation_errors(); ?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <?php
+                                if ($this->session->flashdata("error")) 
+                                {
+                                    ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?php echo $this->session->flashdata("error"); ?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <?php
+                                if ($this->session->flashdata("success")) {
+                                    ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <?php echo $this->session->flashdata("success"); ?>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+							<form class="user" method="POST" action="<?= site_url('auth/register/proccess') ?>">
 								<div class="form-group row">
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"

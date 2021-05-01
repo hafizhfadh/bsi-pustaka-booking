@@ -36,12 +36,12 @@
 									<div class="btn-group" role="group" aria-label="Action Button">
 										<?php if($this->session->userdata('is_admin') == 1) { ?>
 											<a href="<?= site_url('productcategory/edit_view/').$value->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
-											<a href="<?= site_url('productcategory/product_delete/').$value->id ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
-										<? } ?>
+											<a href="<?= site_url('productcategory/category_delete/').$value->id ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+										<?php } ?>
 										</div>
 									</td>
 								</tr>
-								<? } ?>
+								<?php } ?>
 							</tbody>
 						</table>
 					</div>

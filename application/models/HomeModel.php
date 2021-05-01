@@ -27,7 +27,7 @@ class HomeModel extends CI_Model
 
     function getCountBorrowedGoods()
 	{
-        $query = $this->db->get('product_categories');
+        $query = $this->db->get('borrowed_items');
         return $query->num_rows();
     }
 }

@@ -2,6 +2,12 @@
 
 class Product extends CI_Controller
 {
+    function __construct()
+	{
+		parent::__construct();
+        $this->AuthModel->cek_login();
+    }
+    
     public function index()
     {
         $data['list_product'] = $this->ProductModel->list_product();
@@ -30,7 +36,7 @@ class Product extends CI_Controller
 
     public function product_create()
     {
-        $this->form_validation->set_rules('name', 'name','trim|required|min_length[4]|max_length[24]|is_unique[products.name]');
+        $this->form_validation->set_rules('name', 'name','trim|required|min_length[4]|max_length[24]');
 		$this->form_validation->set_rules('description', 'description','trim|required|min_length[1]|max_length[255]');
 		if ($this->form_validation->run())
 	   	{
